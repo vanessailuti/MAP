@@ -74,4 +74,55 @@ class Aufgabe1 {
     }
 }
 
+class Aufgabe2{
+    public static void main(String[] args) {
+        int[] zahlen = {4, 8, 3, 10, 17};
+        int ergebniss_maximaleZahl = maximaleZahl(zahlen);
+        int ergebniss_minimaleZahl = minimaleZahl(zahlen);
+        int ergebniss_maximaleSumme = maximaleSumme(zahlen);
+        int ergebniss_minimaleSumme = minimaleSumme(zahlen);
+        System.out.println(maximaleZahl(zahlen));
+        System.out.println(minimaleZahl(zahlen));
+        System.out.println(maximaleSumme(zahlen));
+        System.out.println(minimaleSumme(zahlen));
+    }
 
+    public static int maximaleZahl(int[] zahlen){
+        int max = Integer.MIN_VALUE;
+        for(int zahl: zahlen){
+            if(zahl > max){
+                max = zahl;
+            }
+        }
+        return max;
+    }
+    public static int minimaleZahl(int[] zahlen){
+        int min = Integer.MAX_VALUE ;
+        for(int zahl: zahlen){
+            if(zahl < min){
+                min = zahl;
+            }
+        }
+        return min;
+    }
+
+    public static int maximaleSumme(int[] zahlen){
+        int summe = 0;
+        int min =  minimaleZahl(zahlen);
+
+        for(int zahl: zahlen){
+            summe += zahl;
+        }
+        return summe - min;
+    }
+
+    public static int minimaleSumme(int[] zahlen){
+        int summe = 0;
+        int max =  maximaleZahl(zahlen);
+
+        for(int zahl: zahlen){
+            summe += zahl;
+        }
+        return summe - max;
+    }
+}
