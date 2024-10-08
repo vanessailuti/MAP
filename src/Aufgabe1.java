@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Noten {
+class Aufgabe1 {
 
     public static void main(String[] args) {
         int[] noten = {29, 37, 38, 41, 84, 67};
