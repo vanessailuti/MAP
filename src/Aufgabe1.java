@@ -7,9 +7,11 @@ class Noten {
         ArrayList<Integer> ergebniss_nichtAusreichend = nichtAusreichendeNoten(noten);
         double ergebniss_durchschnitt = durchschnitt(noten);
         ArrayList<Integer> ergebniss_aberundeteNoten = abgerundeteNoten(noten);
+        int ergebniss_maximaleNote = maximaleNote(noten);
         System.out.println(ergebniss_nichtAusreichend);
         System.out.println(ergebniss_durchschnitt);
         System.out.println(ergebniss_aberundeteNoten);
+        System.out.println(ergebniss_maximaleNote);
     }
 
     public static ArrayList<Integer> nichtAusreichendeNoten(int[] noten) {
@@ -52,6 +54,23 @@ class Noten {
 
         }
         return abgerundeteNoten;
+    }
+
+    public static int maximaleNote(int[] noten){
+        int max = 0 ;
+
+        for(int note : noten){
+            if (note >= 38) {
+                int multipleVon5 = ((note / 5) + 1) * 5;
+                if (multipleVon5 - note < 3) {
+                    note = multipleVon5;
+                }
+            }
+            if(note > max){
+                max = note;
+            }
+        }
+        return max;
     }
 }
 
