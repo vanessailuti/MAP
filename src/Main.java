@@ -4,8 +4,10 @@ class Noten {
 
     public static void main(String[] args) {
         int[] noten = {67, 34, 57, 90, 23, 89};
-        ArrayList<Integer> ergebniss = nichtAusreichendeNoten(noten);
-        System.out.println(ergebniss);
+        ArrayList<Integer> ergebniss_nichtAusreichend = nichtAusreichendeNoten(noten);
+        double ergebniss_durchschnitt = durchschnitt(noten);
+        System.out.println(ergebniss_nichtAusreichend);
+        System.out.println(ergebniss_durchschnitt);
     }
 
     public static ArrayList<Integer> nichtAusreichendeNoten(int[] noten) {
@@ -24,6 +26,15 @@ class Noten {
             }
         }
         return nichtAusreichend;
+    }
+
+    public static double durchschnitt(int[] noten){
+        int summe = 0;
+
+        for (int note : noten) {
+            summe += note;
+        }
+        return (double) summe / noten.length;
     }
 }
 
