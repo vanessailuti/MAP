@@ -231,3 +231,91 @@ class Augabe3{
         return Arrays.copyOfRange(result, fuehrendeNullenIndex, result.length);
     }
 }
+
+class Aufgabe4{
+    public static void main(String[] args) {
+        int[] tastaturen = {40, 35, 70, 15, 45};
+        int[] tastatur = {15, 20, 10,  35};
+        int[] usb = {20, 15, 40, 15};
+        int[] usb_buget = {15, 45, 20};
+        int buget = 30;
+
+        int ergebniss_tastaturen = billigsteTastatur(tastaturen);
+        int ergeebniss_teuersterGegenstand = teuersterGegenstand(tastatur, usb);
+        int ergebniss_buget = usbBudget(usb_buget, buget);
+
+        System.out.println(ergebniss_tastaturen);
+        System.out.println(ergeebniss_teuersterGegenstand);
+        System.out.println(ergebniss_buget);
+
+        int b1 = 60;
+        int[] tastaturen1 = {40, 50, 60};
+        int[] usbLaufwerke1 = {8, 12};
+        System.out.println(maximalerBetrag(b1, tastaturen1, usbLaufwerke1));
+
+        int b2 = 60;
+        int[] tastaturen2 = {60};
+        int[] usbLaufwerke2 = {8, 12};
+        System.out.println(maximalerBetrag(b2, tastaturen2, usbLaufwerke2));
+
+        int b3 = 60;
+        int[] tastaturen3 = {40, 60};
+        int[] usbLaufwerke3 = {8, 12};
+        System.out.println(maximalerBetrag(b3, tastaturen3, usbLaufwerke3));
+
+    }
+
+    public static int billigsteTastatur(int[] preisen){
+        int billigste = preisen[0];
+        for(int i = 1; i < preisen.length; i++){
+            if(preisen[i] < billigste){
+                billigste = preisen[i];
+            }
+        }
+        return billigste;
+    }
+    public static int teuersterGegenstand(int[] tastaturen, int[] usb) {
+        int teuerstes = tastaturen[0];
+
+        for (int i = 1; i < tastaturen.length; i++) {
+            if (tastaturen[i] > teuerstes) {
+                teuerstes = tastaturen[i];
+            }
+        }
+
+        for (int i = 0; i < usb.length; i++) {
+            if (usb[i] > teuerstes) {
+                teuerstes = usb[i];
+            }
+        }
+
+        return teuerstes;
+    }
+
+    public static int usbBudget(int[] usb, int budget) {
+        int teuerstes = -1;
+        for (int i = 0; i < usb.length; i++) {
+            if (usb[i] <= budget && usb[i] > teuerstes) {
+                teuerstes = usb[i];
+            }
+        }
+        return teuerstes;
+    }
+
+    public static int maximalerBetrag(int budget, int[] tastaturen, int[] usbLaufwerke) {
+        int maximalerBetrag = -1;
+
+        for (int i = 0; i < tastaturen.length; i++) {
+            for (int j = 0; j < usbLaufwerke.length; j++) {
+                int gesamtpreis = tastaturen[i] + usbLaufwerke[j];
+                if (gesamtpreis <= budget && gesamtpreis > maximalerBetrag) {
+                    maximalerBetrag = gesamtpreis;
+                }
+            }
+        }
+
+        return maximalerBetrag;
+    }
+
+
+}
