@@ -5,21 +5,24 @@ class Aufgabe1 {
 
     public static void main(String[] args) {
         int[] noten = {29, 37, 38, 41, 84, 67};
-        ArrayList<Integer> ergebniss_nichtAusreichend = nichtAusreichendeNoten(noten);
+        int[] ergebniss_nichtAusreichend = nichtAusreichendeNoten(noten);
         double ergebniss_durchschnitt = durchschnitt(noten);
-        ArrayList<Integer> ergebniss_aberundeteNoten = abgerundeteNoten(noten);
+        int[] ergebniss_abgerundeteNoten = abgerundeteNoten(noten);
         int ergebniss_maximaleNote = maximaleNote(noten);
-        System.out.println(ergebniss_nichtAusreichend);
+        int[] ergebniss_nichtausreichend_abgerundet = nichtAusreichendeNoten(ergebniss_abgerundeteNoten);
+
+        System.out.println(Arrays.toString(ergebniss_nichtAusreichend));
         System.out.println(ergebniss_durchschnitt);
-        System.out.println(ergebniss_aberundeteNoten);
+        System.out.println(Arrays.toString(ergebniss_abgerundeteNoten));
         System.out.println(ergebniss_maximaleNote);
+        System.out.println(Arrays.toString(ergebniss_nichtausreichend_abgerundet));
     }
 
-    public static ArrayList<Integer> nichtAusreichendeNoten(int[] noten) {
-        ArrayList<Integer> nichtAusreichend = new ArrayList<>();
-
-        for (int note : noten) {
-            if (note >= 38) {
+    public static int[] nichtAusreichendeNoten(int[] noten) {
+        int[] nichtAusreichende = new int[noten.length];
+        for (int i = 0; i < noten.length; i++) {
+            int note = noten[i];
+            if (note > 38 ) {
                 int multipleVon5 = ((note / 5) + 1) * 5;
                 if (multipleVon5 - note < 3) {
                     note = multipleVon5;
@@ -27,13 +30,13 @@ class Aufgabe1 {
             }
 
             if (note < 40) {
-                nichtAusreichend.add(note);
+                nichtAusreichende[i] = note;
             }
         }
-        return nichtAusreichend;
+        return nichtAusreichende;
     }
 
-    public static double durchschnitt(int[] noten){
+    public static double durchschnitt(int[] noten) {
         int summe = 0;
 
         for (int note : noten) {
@@ -41,8 +44,25 @@ class Aufgabe1 {
         }
         return (double) summe / noten.length;
     }
-    public static ArrayList<Integer> abgerundeteNoten(int[] noten){
-        ArrayList<Integer> abgerundeteNoten = new ArrayList<>();
+
+    public static int[] abgerundeteNoten(int[] noten) {
+        int[] abgerundeteNoten = new int[noten.length];
+        for (int i = 0; i < noten.length; i++) {
+            int note = noten[i];
+            if (note >= 38) {
+                int multipleVon5 = ((note / 5) + 1) * 5;
+                if (multipleVon5 - note < 3) {
+                    note = multipleVon5;
+                }
+            }
+            abgerundeteNoten[i] = note;
+        }
+        return abgerundeteNoten;
+    }
+
+    public static int maximaleNote(int[] noten) {
+        int max = 0;
+
         for (int note : noten) {
             if (note >= 38) {
                 int multipleVon5 = ((note / 5) + 1) * 5;
@@ -50,24 +70,7 @@ class Aufgabe1 {
                     note = multipleVon5;
                 }
             }
-
-            abgerundeteNoten.add(note);
-
-        }
-        return abgerundeteNoten;
-    }
-
-    public static int maximaleNote(int[] noten){
-        int max = 0 ;
-
-        for(int note : noten){
-            if (note >= 38) {
-                int multipleVon5 = ((note / 5) + 1) * 5;
-                if (multipleVon5 - note < 3) {
-                    note = multipleVon5;
-                }
-            }
-            if(note > max){
+            if (note > max) {
                 max = note;
             }
         }
@@ -77,7 +80,7 @@ class Aufgabe1 {
 
 class Aufgabe2{
     public static void main(String[] args) {
-        int[] zahlen = {4, 8, 3, 10, 17};
+        int[] zahlen = {-4, 8, 3, 10, 17};
         int ergebniss_maximaleZahl = maximaleZahl(zahlen);
         int ergebniss_minimaleZahl = minimaleZahl(zahlen);
         int ergebniss_maximaleSumme = maximaleSumme(zahlen);
@@ -136,7 +139,7 @@ class Augabe3{
         int[] zahlen3 = {8, 3, 0, 0, 0, 0, 0, 0, 0};
         int[] zahlen4 = {5, 4, 0, 0, 0, 0, 0, 0, 0};
         int[] zahlen5 = {2, 3, 6, 0, 0, 0, 0, 0, 0};
-        int zahlen6 = 2;
+        int zahlen6 = 1;
 
         int[] ergebniss_addierenGrosse = addierenGrosse(zahlen1, zahlen2);
         int[] ergebniss_substrachierenGrosse = substrachierenGrosse(zahlen3, zahlen4);
